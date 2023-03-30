@@ -31,7 +31,9 @@ module.exports = {
          const {email,oldPassword,newPassword} = input;
          const user = await User.findOne({ where: { email } });
          if(user && bcrypt.compareSync(oldPassword, user.password)){
-          const res =  await User.update({ password:newPassword}, {
+          const hash = await bcrypt.hash(newPassword, 10);
+          console.log(hash);
+          const res =  await User.update({ password:hash}, {
             where: {
               email
             }
