@@ -10,10 +10,12 @@ module.exports = gql`
         createdAt:String
    }
    extend type Query{
-        getReviewsByMovie(movieId:Int!):[Movie!]
+        getReviewsByMovie(movieId:Int!):[Review!]
    }
    extend type Mutation{
         createReview(movieId:Int!,rating:Int!,comment:String!):createReviewResponse
+        updateReview(reviewId:Int!,rating:Int!,comment:String!):String!
+        deleteReview(reviewId:Int!):String!
    }
    type createReviewResponse{
         id:Int!
